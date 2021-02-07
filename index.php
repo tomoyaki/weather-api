@@ -4,10 +4,14 @@
     $error = "";
 
     if (array_key_exists('city', $_GET)) {
+      $urlContents = 
+      file_get_contents("http://api.openweathermap.org/data/2.5/weather?q=" . $_GET['city'] . "&appid=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");    
+            
+      $weatherArray = json_decode($urlContents,ture);
 
-        $city = str_replace(' ', '', $_GET['city']);
+      //print_r($weatherArray);
+      $weather = $_GET['city'] . "の天気：" .$weatherArray['weather'][0]['main'] . "," . $weatherArray['weather'][0]['description'];
 
-        
     }
 
 
